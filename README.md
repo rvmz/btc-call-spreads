@@ -21,8 +21,12 @@ npm install
 npm run dev
 ```
 
-The app serves on port 3847 and loads the live Deribit book. If that request fails, it uses `data/snapshot.json`.
+The app serves on port 3847 and loads the live Deribit book in the browser. If that request fails, it uses `data/snapshot.json`.
 
 ```bash
 npm test
 ```
+
+## GitHub Pages
+
+Pushes to `main` build a static export and deploy it with GitHub Actions. The site is [rvmz.github.io/btc-call-spreads](https://rvmz.github.io/btc-call-spreads/). Deribit allows that origin, so Refresh still loads the live book.

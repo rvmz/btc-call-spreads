@@ -17,6 +17,7 @@ import {
   formatTimes,
   formatUsd,
 } from "@/lib/format"
+import { loadMarket } from "@/lib/market"
 import { buildDistribution, chanceBetween, enumerateSpreads, spreadPnl } from "@/lib/spreads"
 import type { Band, MarketBook, RankMode, Spread } from "@/lib/types"
 
@@ -78,10 +79,7 @@ export function Desk({ initial }: { initial: MarketBook }) {
     setPending(true)
     setError(null)
     try {
-      const response = await fetch("/api/market", { cache: "no-store" })
-      if (!response.ok) throw new Error(`book request failed (${response.status})`)
-      const next = (await response.json()) as MarketBook
-      setBook(next)
+      setBook(await loadMarket())
       setNow(Date.now())
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not refresh the book")
