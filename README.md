@@ -29,4 +29,12 @@ npm test
 
 ## GitHub Pages
 
-Pushes to `main` build a static export and deploy it with GitHub Actions. The site is [rvmz.github.io/btc-call-spreads](https://rvmz.github.io/btc-call-spreads/). Deribit allows that origin, so Refresh still loads the live book.
+The static site is on the `gh-pages` branch and is served at [rvmz.github.io/btc-call-spreads](https://rvmz.github.io/btc-call-spreads/). In the repository settings, set Pages to deploy from the `gh-pages` branch and the `/` folder. Deribit allows that origin, so Refresh still loads the live book.
+
+Rebuild and update the branch after a source change:
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/btc-call-spreads npm run build
+```
+
+Then copy the contents of `out/` onto `gh-pages`, including `.nojekyll`.
